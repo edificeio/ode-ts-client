@@ -33,6 +33,7 @@
 - [slug](BlogResource.md#slug)
 - [thumbnail](BlogResource.md#thumbnail)
 - [trashed](BlogResource.md#trashed)
+- [trashedBy](BlogResource.md#trashedby)
 - [updatedAt](BlogResource.md#updatedat)
 - [views](BlogResource.md#views)
 
@@ -241,6 +242,16 @@ ___
 #### Inherited from
 
 [IResource](IResource.md).[trashed](IResource.md#trashed)
+
+___
+
+### trashedBy
+
+• `Optional` **trashedBy**: `string`[]
+
+#### Inherited from
+
+[IResource](IResource.md).[trashedBy](IResource.md#trashedby)
 
 ___
 

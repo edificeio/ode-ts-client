@@ -70,16 +70,16 @@ init () {
   cp package.json.template package.json
   sed -i "s/%generateVersion%/${NPM_VERSION_SUFFIX}/" package.json
 
-  PRECOMMIT_CMD="npm run test && npm run docs && git add ./docs/*"
-  yarn install --production=false && npm run prepare && npx husky add .husky/pre-commit "$PRECOMMIT_CMD" # && git add .husky/pre-commit"
+  PRECOMMIT_CMD="yarn test && yarn docs && git add ./docs/*"
+  yarn install && yarn prepare && npx husky add .husky/pre-commit "$PRECOMMIT_CMD" # && git add .husky/pre-commit"
 }
 
 tests () {
-  npm run test
+  yarn test
 }
 
 build () {
-  npm run build
+  yarn build
   status=$?
   if [ $status != 0 ];
   then
@@ -93,24 +93,24 @@ build () {
 watch () {
   if [ -z $SPRINGBOARD ]; then
     echo "Watching => ./dist folder"
-    npm run watch --build_target=dist
+    yarn watch --build_target=dist
   else
     echo "Watching => $SPRINGBOARD springboard"
-    npm run watch --build_target=$PWD/../$SPRINGBOARD/assets/js/ode-ts-client
+    yarn watch --build_target=$PWD/../$SPRINGBOARD/assets/js/ode-ts-client
   fi
 }
 
 audit () {
-  npm audit
+  yarn audit
 }
 
 doc () {
-  npm run docs
+  yarn docs
 }
 
 publishNPM () {
   LOCAL_BRANCH=`echo $GIT_BRANCH | sed -e "s|origin/||g"`
-  npm publish --tag $LOCAL_BRANCH
+  yarn publish --tag $LOCAL_BRANCH
 }
 
 archive() {

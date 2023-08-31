@@ -478,7 +478,7 @@ ___
 
 ### PublishParameters
 
-Ƭ **PublishParameters**: [`IActionParameters`](interfaces/IActionParameters.md) & { `activityType`: `string`[] ; `age`: [`string`, `string`] ; `application`: `string` \| `undefined` ; `cover`: `Blob` ; `description`: `string` ; `keyWords`: `string` ; `language`: `string` ; `licence`: `string` ; `resourceId`: `string` ; `subjectArea`: `string`[] ; `teacherAvatar`: `Blob` ; `title`: `string` ; `userId`: `string` \| `undefined` ; `userStructureName`: `string`  }
+Ƭ **PublishParameters**: [`IActionParameters`](interfaces/IActionParameters.md) & { `activityType`: `string`[] ; `age`: [`string`, `string`] ; `application`: `string` \| `undefined` ; `cover`: `Blob` ; `description`: `string` ; `keyWords`: `string` ; `language`: `string` ; `licence`: `string` ; `resourceEntId`: `string` ; `resourceId`: `string` ; `subjectArea`: `string`[] ; `teacherAvatar`: `Blob` ; `title`: `string` ; `userId`: `string` \| `undefined` ; `userStructureName`: `string`  }
 
 ___
 

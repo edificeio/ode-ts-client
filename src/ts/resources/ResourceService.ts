@@ -141,7 +141,7 @@ export abstract class ResourceService {
     publicationAsFormData.append("licence", parameters.licence);
     publicationAsFormData.append(
       "pdfUri",
-      `${window.location.origin}${this.getPrintUrl(parameters.resourceId)}`,
+      `${window.location.origin}${this.getPrintUrl(parameters.resourceEntId)}`,
     );
     publicationAsFormData.append(
       "application",

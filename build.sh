@@ -48,7 +48,7 @@ esac
 done
 
 clean () {
-  rm -rf node_modules dist test .husky .gradle package.json package-lock.json deployment yarn.lock
+  rm -rf node_modules dist test .husky .gradle package.json yarn.lock deployment
 }
 
 init () {
@@ -70,16 +70,16 @@ init () {
   cp package.json.template package.json
   sed -i "s/%generateVersion%/${NPM_VERSION_SUFFIX}/" package.json
 
-  PRECOMMIT_CMD="docker-compose run --rm -u \\\"$USER_UID:$GROUP_GID\\\" node sh -c \\\"npm run test && npm run docs\\\" && git add ./docs/*"
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn install --production=false && npm run prepare && npx husky add .husky/pre-commit \"$PRECOMMIT_CMD\"" # && git add .husky/pre-commit"
+  PRECOMMIT_CMD="docker-compose run --rm -u \\\"$USER_UID:$GROUP_GID\\\" node sh -c \\\"yarn test && yarn docs\\\" && git add ./docs/*"
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn install && yarn prepare && npx husky add .husky/pre-commit \"$PRECOMMIT_CMD\"" # && git add .husky/pre-commit"
 }
 
 tests () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "npm run test"
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn test"
 }
 
 build () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "npm run build"
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn build"
   status=$?
   if [ $status != 0 ];
   then
@@ -96,28 +96,28 @@ watch () {
     docker-compose run \
       --rm \
       -u "$USER_UID:$GROUP_GID" \
-      node sh -c "npm run watch --build_target=dist"
+      node sh -c "yarn watch --build_target=dist"
   else
     echo "Watching => $SPRINGBOARD springboard"
     docker-compose run \
       --rm \
       -u "$USER_UID:$GROUP_GID" \
       -v $PWD/../$SPRINGBOARD:/home/node/springboard \
-      node sh -c "npm run watch --build_target=/home/node/springboard/assets/js/ode-ts-client"
+      node sh -c "yarn watch --build_target=/home/node/springboard/assets/js/ode-ts-client"
   fi
 }
 
 audit () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "npm audit"
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn audit"
 }
 
 doc () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "npm run docs"
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn docs"
 }
 
 publishNPM () {
   LOCAL_BRANCH=`echo $GIT_BRANCH | sed -e "s|origin/||g"`
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "npm publish --tag $LOCAL_BRANCH"
+  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn publish --tag $LOCAL_BRANCH"
 }
 
 archive() {

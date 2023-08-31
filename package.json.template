@@ -1,6 +1,6 @@
 {
   "name": "ode-ts-client",
-  "version": "1.1.4-develop-b2school.%generateVersion%",
+  "version": "1.2.1-develop-b2school.%generateVersion%",
   "description": "Foundation frameworks by Open Digital Education",
   "homepage": "https://github.com/opendigitaleducation/ode-ts-client#readme",
   "bugs": {
@@ -33,7 +33,7 @@
     "format:write": "npx prettier --write \"src/ts/**/*.ts\"",
     "prepare": "npx husky install",
     "test": "node scripts/test.mjs && npx jasmine --config=src/test/config/jasmine.json",
-    "watch": "export build_target=${npm_config_build_target}; export watch=true; npx yarn rollup -c --watch"
+    "watch": "export build_target=${npm_config_build_target}; export watch=true; npx rollup -c --watch"
   },
   "devDependencies": {
     "@types/jasmine": "3.6.3",
@@ -54,5 +54,9 @@
     "axios": "0.21.1",
     "core-js": "3.8.3",
     "rxjs": "7.3.0"
+  },
+  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": "16.x"
   }
 }

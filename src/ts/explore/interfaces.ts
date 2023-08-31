@@ -417,6 +417,7 @@ export interface IResource {
   updatedAt: string;
   views?: number;
   trashed: boolean;
+  trashedBy?: string[];
   rights: RightStringified[];
   description: string;
 }
@@ -503,6 +504,7 @@ export type PublishParameters = IActionParameters & {
   licence: string;
   teacherAvatar: Blob;
   resourceId: string;
+  resourceEntId: string;
   userStructureName: string;
 };
 

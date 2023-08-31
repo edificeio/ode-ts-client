@@ -29,7 +29,6 @@ config.forEach(async (lib) => {
   await build({
     build: {
       sourcemap: true,
-      // target: "es2015",
       outDir: "./dist",
       lib: {
         ...lib,

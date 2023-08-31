@@ -32,6 +32,7 @@
 - [slug](IResource.md#slug)
 - [thumbnail](IResource.md#thumbnail)
 - [trashed](IResource.md#trashed)
+- [trashedBy](IResource.md#trashedby)
 - [updatedAt](IResource.md#updatedat)
 - [views](IResource.md#views)
 
@@ -154,6 +155,12 @@ ___
 ### trashed
 
 • **trashed**: `boolean`
+
+___
+
+### trashedBy
+
+• `Optional` **trashedBy**: `string`[]
 
 ___
 
