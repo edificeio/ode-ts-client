@@ -177,7 +177,7 @@ publishNexus () {
     *SNAPSHOT) nexusRepository='snapshots' ;;
     *)         nexusRepository='releases' ;;
   esac
-  mvn deploy:deploy-file \
+  docker run --rm -v "$(echo ~/.m2)":/root/.m2 -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn deploy:deploy-file \
     --batch-mode \
     -DgroupId=$MVN_MOD_GROUPID \
     -DartifactId=$MVN_MOD_NAME \
