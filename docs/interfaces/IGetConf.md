@@ -9,6 +9,7 @@
 - [applications](IGetConf.md#applications)
 - [conf](IGetConf.md#conf)
 - [currentApp](IGetConf.md#currentapp)
+- [extendedTheme](IGetConf.md#extendedtheme)
 - [theme](IGetConf.md#theme)
 
 ## Properties
@@ -28,6 +29,12 @@ ___
 ### currentApp
 
 • **currentApp**: `undefined` \| [`IWebApp`](IWebApp.md)
+
+___
+
+### extendedTheme
+
+• **extendedTheme**: `any`
 
 ___
 

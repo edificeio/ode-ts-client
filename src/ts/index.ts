@@ -6,7 +6,7 @@ export * from "./globals";
  * - High-level API : an explorer context (IExplorerContext),
  * - Low-level API : access to the communication bus, if needed (IBus, IBusAgent)
  */
-export * from "./explore/interfaces";
+export * from "./explorer/interfaces";
 
 //---------------------------------- NOTIFY ----------------------------------
 export * from "./notify/interfaces";

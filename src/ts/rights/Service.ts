@@ -1,4 +1,4 @@
-import { RightStringified } from "../explore/interfaces";
+import { RightStringified } from "../explorer/interfaces";
 import { OdeServices } from "../services/OdeServices";
 import { ResourceRight, RightRole } from "./interface";
 

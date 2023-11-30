@@ -8,6 +8,8 @@
 
   ↳ [`BlogResource`](BlogResource.md)
 
+  ↳ [`MindmapResource`](MindmapResource.md)
+
 ## Table of contents
 
 ### Properties

@@ -237,9 +237,7 @@ export interface IUserPreferences {
 
 export interface IOdeTheme {
   basePath: string;
-  bootstrap: string;
   bootstrapPath: string;
-  bootstrapUrl: string;
   bootstrapVersion: string;
   is1d: boolean;
   logoutCallback: string;
@@ -255,4 +253,5 @@ export interface IGetConf {
   conf: IThemeConf;
   currentApp: IWebApp | undefined;
   theme: IOdeTheme;
+  extendedTheme: any;
 }

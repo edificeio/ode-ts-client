@@ -1,8 +1,32 @@
 import { APP, IResource, RESOURCE, ResourceType } from "..";
-import { BlogUpdate, UpdateResult } from "./interface";
+import { BlogUpdate, CreateParameters, CreateResult, UpdateResult } from "./interface";
 import { ResourceService } from "./ResourceService";
 
 export class BlogResourceService extends ResourceService {
+
+  async create(parameters: CreateParameters): Promise<CreateResult> {
+    const fixThumb = parameters.thumbnail
+      ? await this.getThumbnailPath(parameters.thumbnail)
+      : "";
+
+    const apiPath = parameters.public ? "/blog/pub" : "/blog";
+    
+    const res = await this.http.post<CreateResult>(apiPath, {
+      title: parameters.name,
+      description: parameters.description,
+      visibility: parameters.public ? "PUBLIC" : "OWNER",
+      thumbnail: fixThumb,
+      trashed: false,
+      slug: parameters.public ? parameters.slug : "",
+      "publish-type": parameters.publishType || "RESTRAINT",
+      "comment-type": "IMMEDIATE",
+    });
+
+    this.checkHttpResponse(res);
+    
+    return res;
+  }
+
   async update(parameters: BlogUpdate): Promise<UpdateResult> {
     const fixThumb = await this.getThumbnailPath(parameters.thumbnail);
     const res = await this.http.put<IResource>(`/blog/${parameters.entId}`, {

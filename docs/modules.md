@@ -11,7 +11,6 @@
 ### Classes
 
 - [ConfigurationFrameworkFactory](classes/ConfigurationFrameworkFactory.md)
-- [ExplorerFrameworkFactory](classes/ExplorerFrameworkFactory.md)
 - [ITimelineFactory](classes/ITimelineFactory.md)
 - [LastInfosWidget](classes/LastInfosWidget.md)
 - [NotifyFrameworkFactory](classes/NotifyFrameworkFactory.md)
@@ -28,6 +27,8 @@
 - [BookmarkSaveResponse](interfaces/BookmarkSaveResponse.md)
 - [BookmarkWithDetails](interfaces/BookmarkWithDetails.md)
 - [BookmarkWithMembers](interfaces/BookmarkWithMembers.md)
+- [CreateParameters](interfaces/CreateParameters.md)
+- [CreateResult](interfaces/CreateResult.md)
 - [GetResourceRightPayload](interfaces/GetResourceRightPayload.md)
 - [Group](interfaces/Group.md)
 - [IAction](interfaces/IAction.md)
@@ -85,6 +86,8 @@
 - [IWidgetModel](interfaces/IWidgetModel.md)
 - [IWorkflowAuth](interfaces/IWorkflowAuth.md)
 - [IXitiTrackingParams](interfaces/IXitiTrackingParams.md)
+- [MindmapResource](interfaces/MindmapResource.md)
+- [MindmapUpdate](interfaces/MindmapUpdate.md)
 - [PutSharePayload](interfaces/PutSharePayload.md)
 - [PutShareResponse](interfaces/PutShareResponse.md)
 - [Recipient](interfaces/Recipient.md)
@@ -733,6 +736,7 @@ ___
 | `CAS` | ``"cas"`` |
 | `EXERCIZER` | ``"exercizer"`` |
 | `EXPLORER` | ``"explorer"`` |
+| `MINDMAP` | ``"mindmap"`` |
 | `PORTAL` | ``"portal"`` |
 | `TIMELINE` | ``"timeline"`` |
 | `VIDEO` | ``"video"`` |
@@ -881,6 +885,7 @@ ___
 | `BLOG` | ``"blog"`` |
 | `EXERCISE` | ``"exercise"`` |
 | `FOLDER` | ``"folder"`` |
+| `MINDMAP` | ``"mindmap"`` |
 
 ___
 

@@ -16,7 +16,7 @@ import {
   ResourceType,
 } from "..";
 import { OdeServices } from "../services/OdeServices";
-import { UpdateParameters, UpdateResult } from "./interface";
+import { CreateParameters, CreateResult, UpdateParameters, UpdateResult } from "./interface";
 
 export abstract class ResourceService {
   //
@@ -80,6 +80,10 @@ export abstract class ResourceService {
   abstract getViewUrl(resourceId: string): string;
 
   abstract getFormUrl(folderId?: string): string;
+
+  abstract create<T extends CreateParameters>(
+    parameters: T,
+  ): Promise<CreateResult>;
 
   abstract update<T extends UpdateParameters>(
     parameters: T,

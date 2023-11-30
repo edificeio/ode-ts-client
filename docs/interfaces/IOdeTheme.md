@@ -7,9 +7,7 @@
 ### Properties
 
 - [basePath](IOdeTheme.md#basepath)
-- [bootstrap](IOdeTheme.md#bootstrap)
 - [bootstrapPath](IOdeTheme.md#bootstrappath)
-- [bootstrapUrl](IOdeTheme.md#bootstrapurl)
 - [bootstrapVersion](IOdeTheme.md#bootstrapversion)
 - [is1d](IOdeTheme.md#is1d)
 - [logoutCallback](IOdeTheme.md#logoutcallback)
@@ -27,21 +25,9 @@
 
 ___
 
-### bootstrap
-
-• **bootstrap**: `string`
-
-___
-
 ### bootstrapPath
 
 • **bootstrapPath**: `string`
-
-___
-
-### bootstrapUrl
-
-• **bootstrapUrl**: `string`
 
 ___
 

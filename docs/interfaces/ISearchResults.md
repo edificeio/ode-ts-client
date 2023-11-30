@@ -15,6 +15,7 @@
 - [folders](ISearchResults.md#folders)
 - [pagination](ISearchResults.md#pagination)
 - [resources](ISearchResults.md#resources)
+- [searchConfig](ISearchResults.md#searchconfig)
 
 ## Properties
 
@@ -33,3 +34,15 @@ ___
 ### resources
 
 • **resources**: [`IResource`](IResource.md)[]
+
+___
+
+### searchConfig
+
+• `Optional` **searchConfig**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `minLength` | `number` |

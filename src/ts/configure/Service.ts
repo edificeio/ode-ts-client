@@ -21,9 +21,10 @@ export class ConfService {
       this.getApplicationsList(),
     ]);
 
-    const [theme, currentApp] = await Promise.all([
+    const [theme, currentApp, extendedTheme] = await Promise.all([
       this.getTheme({ conf }),
       this.getWebAppConf({ app, applications }),
+      this.getExtendedTheme(),
     ]);
 
     return {
@@ -31,6 +32,7 @@ export class ConfService {
       conf,
       currentApp,
       theme,
+      extendedTheme,
     };
   }
 
@@ -58,6 +60,17 @@ export class ConfService {
       "exports.conf",
     );
     return res;
+  }
+
+  private async getExtendedTheme(): Promise<any> {
+    try{
+      const res = await this.http.get<any>("/assets/extended-theme.json");
+      return res;
+    }catch(e){
+      //TODO return a fallback if extended-theme.json is missing
+      console.error('[getExtendedTheme] could not found /assets/extended-theme.json')
+      return {}
+    }
   }
 
   private async getApplicationsList(): Promise<IWebApp[]> {
@@ -96,21 +109,18 @@ export class ConfService {
     const skins = conf?.overriding.find(
       (item: { child: any }) => item.child === skin,
     ).skins;
-    const bootstrap = "/assets/themes/ode-bootstrap";
-    const bootstrapVersion = conf?.overriding.find(
-      (item: { child: any }) => item.child === skin,
-    ).bootstrapVersion;
-    const bootstrapPath = `${this.cdnDomain}/assets/themes/${bootstrapVersion}`;
-    const bootstrapUrl = `${bootstrapPath}/skins/${theme.skinName}`;
+    const bootstrapPath = "/assets/themes/edifice-bootstrap";
+    const bootstrapVersion = conf?.overriding
+      .find((item: { child: any }) => item.child === skin)
+      .bootstrapVersion.split("-")
+      .at(-1);
     const is1d =
       conf?.overriding.find((item: { child: any }) => item.child === skin)
         .parent === "panda";
 
     return {
       basePath: `${this.cdnDomain}${theme.skin}../../`,
-      bootstrap,
       bootstrapPath,
-      bootstrapUrl,
       bootstrapVersion,
       is1d,
       logoutCallback: theme.logoutCallback,

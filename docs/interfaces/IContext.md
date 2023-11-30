@@ -16,6 +16,7 @@
 - [pagination](IContext.md#pagination)
 - [preferences](IContext.md#preferences)
 - [resources](IContext.md#resources)
+- [searchConfig](IContext.md#searchconfig)
 
 ## Properties
 
@@ -52,3 +53,19 @@ ___
 #### Inherited from
 
 [ISearchResults](ISearchResults.md).[resources](ISearchResults.md#resources)
+
+___
+
+### searchConfig
+
+• `Optional` **searchConfig**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `minLength` | `number` |
+
+#### Inherited from
+
+[ISearchResults](ISearchResults.md).[searchConfig](ISearchResults.md#searchconfig)

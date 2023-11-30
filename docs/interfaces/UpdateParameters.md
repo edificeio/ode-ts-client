@@ -10,6 +10,8 @@ Parameters expected to update resource
 
   ↳ [`BlogUpdate`](BlogUpdate.md)
 
+  ↳ [`MindmapUpdate`](MindmapUpdate.md)
+
 ## Table of contents
 
 ### Properties

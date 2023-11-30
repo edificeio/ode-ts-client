@@ -34,6 +34,7 @@
 | `explorer` | `any` |
 | `infotip` | `any` |
 | `language` | `any` |
+| `mindmap` | `any` |
 | `portal` | `any` |
 | `rgpdCookies` | `any` |
 | `timeline` | `any` |

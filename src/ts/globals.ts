@@ -27,6 +27,7 @@ export const APP = {
   TIMELINE: "timeline",
   CAS: "cas",
   VIDEO: "video",
+  MINDMAP: "mindmap",
 
   // TODO compléter/trier les apps suivantes
   /*

@@ -1,15 +1,14 @@
 import { Observable } from "rxjs";
 import { APP, App } from "../globals";
 import { RightRole } from "../services";
-import { explorer } from "./Framework";
 
 //-------------------------------------
-export abstract class ExplorerFrameworkFactory {
+/* export abstract class ExplorerFrameworkFactory {
   //-------------------------------------
   static instance(): IExplorerFramework {
     return explorer;
   }
-}
+} */
 
 /** Framework exploration capabilities offered to the client. */
 //-------------------------------------
@@ -172,7 +171,9 @@ export const RESOURCE = {
   FOLDER: "folder",
   BLOG: "blog",
   EXERCISE: "exercise",
+  MINDMAP: "mindmap",
 } as const;
+
 export type ResourceType = (typeof RESOURCE)[keyof typeof RESOURCE];
 
 //-- App/Resource link
@@ -180,6 +181,7 @@ export const appNameForResource: { [R in ResourceType]: App } = {
   folder: APP.EXPLORER,
   blog: APP.BLOG,
   exercise: APP.EXERCIZER,
+  mindmap: APP.MINDMAP,
 } as const;
 
 //-- Actions (toaster)
@@ -205,6 +207,7 @@ export const ACTION = {
   PUBLISH: "publish",
   PUBLISH_MOODLE: "publish_moodle",
 } as const;
+
 export type ActionType = (typeof ACTION)[keyof typeof ACTION];
 
 //-- Folders
@@ -212,6 +215,7 @@ export const FOLDER = {
   BIN: "bin",
   DEFAULT: "default",
 } as const;
+
 export type FolderType = (typeof FOLDER)[keyof typeof FOLDER];
 
 //-- Filters
@@ -319,6 +323,7 @@ export interface ISearchResults {
   folders: IFolder[];
   pagination: IPagination;
   resources: IResource[];
+  searchConfig?: {minLength:number}
 }
 //-------------------------------------
 export interface IContext extends ISearchResults {

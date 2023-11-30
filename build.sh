@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Options
+NO_DOCKER=""
+for i in "$@"
+do
+case $i in
+  --no-docker*)
+  NO_DOCKER="true"
+  shift
+  ;;
+  *)
+  ;;
+esac
+done
+
 if [ "$#" -lt 1 ]; then
   echo "Usage: $0 <clean|init|build|install|watch>"
   echo "Example: $0 clean"
@@ -48,7 +62,7 @@ esac
 done
 
 clean () {
-  rm -rf node_modules dist test .husky .gradle package.json yarn.lock deployment
+  rm -rf node_modules dist test .husky .gradle package.json package-lock.json deployment pnpm-lock.yaml .pnpm-store
 }
 
 init () {
@@ -70,16 +84,28 @@ init () {
   cp package.json.template package.json
   sed -i "s/%generateVersion%/${NPM_VERSION_SUFFIX}/" package.json
 
-  PRECOMMIT_CMD="docker-compose run --rm -u \\\"$USER_UID:$GROUP_GID\\\" node sh -c \\\"yarn test && yarn docs\\\" && git add ./docs/*"
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn install && yarn prepare && npx husky add .husky/pre-commit \"$PRECOMMIT_CMD\"" # && git add .husky/pre-commit"
+  if [ "$NO_DOCKER" = "true" ] ; then
+    pnpm install && pnpm run prepare && npx husky add .husky/pre-commit "pnpm run test && pnpm run docs && git add ./docs/*"
+  else
+    PRECOMMIT_CMD="docker-compose run --rm -u \\\"$USER_UID:$GROUP_GID\\\" node sh -c \\\"pnpm run test && pnpm run docs\\\" && git add ./docs/*"
+    docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "pnpm install && pnpm run prepare && npx husky add .husky/pre-commit \"$PRECOMMIT_CMD\""
+  fi
 }
 
-tests () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn test"
+test () {
+  if [ "$NO_DOCKER" = "true" ] ; then
+    pnpm run test
+  else
+    docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "pnpm run test"
+  fi
 }
 
 build () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn build"
+  if [ "$NO_DOCKER" = "true" ] ; then
+    pnpm run build
+  else
+    docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "pnpm run build"
+  fi
   status=$?
   if [ $status != 0 ];
   then
@@ -93,37 +119,57 @@ build () {
 watch () {
   if [ -z $SPRINGBOARD ]; then
     echo "Watching => ./dist folder"
-    docker-compose run \
-      --rm \
-      -u "$USER_UID:$GROUP_GID" \
-      node sh -c "yarn watch --build_target=dist"
+    if [ "$NO_DOCKER" = "true" ] ; then
+      pnpm run watch --build_target=dist
+    else
+      docker-compose run \
+        --rm \
+        -u "$USER_UID:$GROUP_GID" \
+        node sh -c "npm run watch --build_target=dist"
+    fi
   else
     echo "Watching => $SPRINGBOARD springboard"
-    docker-compose run \
-      --rm \
-      -u "$USER_UID:$GROUP_GID" \
-      -v $PWD/../$SPRINGBOARD:/home/node/springboard \
-      node sh -c "yarn watch --build_target=/home/node/springboard/assets/js/ode-ts-client"
+    if [ "$NO_DOCKER" = "true" ] ; then
+      pnpm run watch --build_target=$PWD/../$SPRINGBOARD/assets/js/ode-ts-client
+    else
+      docker-compose run \
+        --rm \
+        -u "$USER_UID:$GROUP_GID" \
+        -v $PWD/../$SPRINGBOARD:/home/node/springboard \
+        node sh -c "pnpm run watch --build_target=/home/node/springboard/assets/js/ode-ts-client"
+    fi
   fi
 }
 
 audit () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn audit"
+  if [ "$NO_DOCKER" = "true" ] ; then
+    npm audit
+  else
+    docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "pnpm run audit"
+  fi
 }
 
 doc () {
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn docs"
+  if [ "$NO_DOCKER" = "true" ] ; then
+    pnpm run docs
+  else
+    docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "pnpm run docs"
+  fi
 }
 
 publishNPM () {
   LOCAL_BRANCH=`echo $GIT_BRANCH | sed -e "s|origin/||g"`
-  docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "yarn publish --tag $LOCAL_BRANCH"
+  if [ "$NO_DOCKER" = "true" ] ; then
+    pnpm publish --tag $LOCAL_BRANCH
+  else
+    docker-compose run --rm -u "$USER_UID:$GROUP_GID" node sh -c "pnpm publish --no-git-checks --tag $LOCAL_BRANCH"
+  fi
 }
 
-archive() {
-  echo "[archive] Archiving dist folder and conf.j2 file..."
-  tar cfzh ${MVN_MOD_NAME}.tar.gz dist/* ode-ts-client/conf.j2
-}
+# archive() {
+#   echo "[archive] Archiving dist folder and conf.j2 file..."
+#   tar cfzh ${MVN_MOD_NAME}.tar.gz dist/* ode-ts-client/conf.j2
+# }
 
 publishNexus () {
   case "$MVN_MOD_VERSION" in
@@ -164,7 +210,7 @@ do
       build
       ;;
     test)
-      tests
+      test
       ;;
     watch)
       watch
