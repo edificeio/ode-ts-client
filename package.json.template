@@ -1,6 +1,6 @@
 {
   "name": "ode-ts-client",
-  "version": "1.2.1-dev.%generateVersion%",
+  "version": "1.2.1-develop-pedago.%generateVersion%",
   "description": "Foundation frameworks by Open Digital Education",
   "homepage": "https://github.com/opendigitaleducation/ode-ts-client#readme",
   "bugs": {
