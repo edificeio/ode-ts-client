@@ -54,7 +54,8 @@ const defaultWidgetPosition: { [name in WidgetName]: WidgetPosition } = {
   "briefme-widget": WIDGET_POSITION.LEFT,
   "school-widget": WIDGET_POSITION.LEFT,
   "edumalin-widget": WIDGET_POSITION.RIGHT,
-  "mediacentre-widget": WIDGET_POSITION.RIGHT
+  "mediacentre-widget": WIDGET_POSITION.RIGHT,
+  "cantine-widget": WIDGET_POSITION.LEFT
 };
 
 // Default sort order for widgets, then overriden by user preferences, if any.
@@ -78,7 +79,8 @@ const defaultWidgetOrder: { [name in WidgetName]: number } = {
   "calendar-widget": 130, // Calendrier
   notes: 140,
   "edumalin-widget": 35,
-  "mediacentre-widget": 145
+  "mediacentre-widget": 145,
+  "cantine-widget": 21
 };
 
 //-------------------------------------
