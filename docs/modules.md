@@ -955,6 +955,7 @@ ___
 | `BOOKMARK` | ``"bookmark-widget"`` |
 | `BRIEFME` | ``"briefme-widget"`` |
 | `CALENDAR` | ``"calendar-widget"`` |
+| `CANTINE` | ``"cantine-widget"`` |
 | `CARNET` | ``"carnet-de-bord"`` |
 | `CURSUS` | ``"cursus-widget"`` |
 | `EDUMALIN` | ``"edumalin-widget"`` |
