@@ -23,8 +23,9 @@ export const WIDGET_NAME = {
   SCHOOL: "school-widget",
   EDUMALIN: "edumalin-widget",
   MEDIACENTRE: "mediacentre-widget",
+  EVALUATION: "evaluation-widget",
   CANTINE: "cantine-widget",
-  EVALUATION: "evaluation-widget"
+  PTIT_OBSERVATOIRE: "ptit-observatoire-widget"
 } as const;
 export type WidgetName = (typeof WIDGET_NAME)[keyof typeof WIDGET_NAME];
 
