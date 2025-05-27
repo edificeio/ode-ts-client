@@ -970,6 +970,7 @@ ___
 | `RSS` | ``"rss-widget"`` |
 | `SCHOOL` | ``"school-widget"`` |
 | `UNIVERSALIS` | ``"universalis-widget"`` |
+| `SCREENT_TIME` | ``"screen-time-widget"`` |
 
 ___
 
