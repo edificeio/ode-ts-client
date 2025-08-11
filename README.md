@@ -1,9 +1,9 @@
-# ode-ts-client
-
-Open Digital Education (ODE) client frameworks definition and implementation.
-
-/!\ THIS IS WORK IN PROGRESS, AND STILL UNDER HEAVY DEVELOPMENT.
-PLEASE DO NOT USE UNTIL IT REACHES 1.0.
+# À propos d'ode-ts-client
+    
+* Licence : [AGPL v3](http://www.gnu.org/licenses/agpl.txt) - Copyright Edifice
+* Financeur(s) : Edifice
+* Développeur(s) : Edifice
+* Description : framework front Edifice pour les applications AngularJS / Bootstrap.
 
 ***
 
