@@ -26,7 +26,8 @@ export const WIDGET_NAME = {
   EVALUATION: "evaluation-widget",
   CANTINE: "cantine-widget",
   PTIT_OBSERVATOIRE: "ptit-observatoire-widget",
-  SCREEN_TIME: "screen-time-widget"
+  SCREEN_TIME: "screen-time-widget",
+  BIBLIOCOLLEGE: "bibliocollege-widget"
 } as const;
 export type WidgetName = (typeof WIDGET_NAME)[keyof typeof WIDGET_NAME];
 
@@ -78,8 +79,8 @@ export type WidgetUserPref = {
   /** Prefered position on-screen (left, right...). */
   position?: WidgetPosition;
 } & {
-  [pref in WidgetSpecificUserPrefs]?: any;
-};
+    [pref in WidgetSpecificUserPrefs]?: any;
+  };
 
 //-------------------------------------
 // WIDGETS

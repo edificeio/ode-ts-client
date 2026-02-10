@@ -971,6 +971,7 @@ ___
 | `SCHOOL` | ``"school-widget"`` |
 | `UNIVERSALIS` | ``"universalis-widget"`` |
 | `SCREENT_TIME` | ``"screen-time-widget"`` |
+| `BIBLIOCOLLEGE` | ``"bibliocollege-widget"`` |
 
 ___
 

@@ -58,7 +58,8 @@ const defaultWidgetPosition: { [name in WidgetName]: WidgetPosition } = {
   "evaluation-widget": WIDGET_POSITION.LEFT,
   "cantine-widget": WIDGET_POSITION.LEFT,
   "ptit-observatoire-widget": WIDGET_POSITION.RIGHT,
-  "screen-time-widget": WIDGET_POSITION.RIGHT
+  "screen-time-widget": WIDGET_POSITION.RIGHT,
+  "bibliocollege-widget": WIDGET_POSITION.LEFT
 };
 
 // Default sort order for widgets, then overriden by user preferences, if any.
@@ -86,7 +87,8 @@ const defaultWidgetOrder: { [name in WidgetName]: number } = {
   "cantine-widget": 21,
   "evaluation-widget": 35,
   "ptit-observatoire-widget": 35,
-  "screen-time-widget": 35
+  "screen-time-widget": 35,
+  "bibliocollege-widget": 35
 };
 
 //-------------------------------------
