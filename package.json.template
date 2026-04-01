@@ -16,12 +16,12 @@
     ".": {
       "require": "./dist/ode-ts-client.js",
       "import": "./dist/ode-ts-client.mjs",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/ts/index.d.ts"
     }
   },
   "main": "dist/ode-ts-client.js",
   "module": "dist/ode-ts-client.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/ts/index.d.ts",
   "files": [
     "dist"
   ],
@@ -53,7 +53,7 @@
     "typedoc-plugin-markdown": "3.11.14",
     "typescript": "5.2.2",
     "vite": "5.1.4",
-    "vite-plugin-dts": "4.3.0"
+    "vite-plugin-dts": "4.5.4"
   },
   "packageManager": "pnpm@8.6.6",
   "engines": {

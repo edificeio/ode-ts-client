@@ -46,6 +46,12 @@ config.forEach(async (lib) => {
       },
       emptyOutDir: true,
     },
-    plugins: [visualizer(), dts()],
+    plugins: [
+      visualizer(),
+      dts({
+        tsconfigPath: "./tsconfig.json",
+        outputDir: ".",
+      }),
+    ],
   });
 });
