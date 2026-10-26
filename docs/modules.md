@@ -951,6 +951,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `AGENDA` | ``"agenda-widget"`` |
+| `ALLO_REGION` | ``"allo-region-widget"`` |
 | `BIRTHDAY` | ``"birthday"`` |
 | `BOOKMARK` | ``"bookmark-widget"`` |
 | `BRIEFME` | ``"briefme-widget"`` |

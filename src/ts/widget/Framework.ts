@@ -6,6 +6,7 @@ import {
 } from "./interfaces";
 import {
   IWidgetModel,
+  IWorkflowAuth,
   WidgetPosition,
   WIDGET_POSITION,
 } from "../session/interfaces";
@@ -60,7 +61,8 @@ const defaultWidgetPosition: { [name in WidgetName]: WidgetPosition } = {
   "ptit-observatoire-widget": WIDGET_POSITION.RIGHT,
   "screen-time-widget": WIDGET_POSITION.RIGHT,
   "bibliocollege-widget": WIDGET_POSITION.LEFT,
-  "e-sidoc-widget": WIDGET_POSITION.LEFT
+  "e-sidoc-widget": WIDGET_POSITION.LEFT,
+  "allo-region-widget": WIDGET_POSITION.RIGHT,
 };
 
 // Default sort order for widgets, then overriden by user preferences, if any.
@@ -90,8 +92,23 @@ const defaultWidgetOrder: { [name in WidgetName]: number } = {
   "ptit-observatoire-widget": 35,
   "screen-time-widget": 35,
   "bibliocollege-widget": 35,
-  "e-sidoc-widget": 35
+  "e-sidoc-widget": 35,
+  "allo-region-widget": 35,
 };
+
+// Widgets shown to the users having the workflow right of their application,
+// whether or not the platform activated them for these users.
+const workflowWidgets: Array<{
+  name: WidgetName;
+  workflow: string;
+  application: string;
+}> = [
+  {
+    name: "allo-region-widget",
+    workflow: "alloregion.access",
+    application: "AlloRegion",
+  },
+];
 
 //-------------------------------------
 export class WidgetFramework implements IWidgetFramework {
@@ -109,6 +126,7 @@ export class WidgetFramework implements IWidgetFramework {
           userInfo.widgets.forEach((w) => {
             this._widgets.push(new Widget(w));
           });
+          this.applyWorkflowWidgets(userInfo.authorizedActions);
           this.loadUserPrefs()
             .then(() => {
               this._initialized?.resolve();
@@ -137,6 +155,34 @@ export class WidgetFramework implements IWidgetFramework {
     widgetName: WidgetName,
   ): WidgetPosition | undefined {
     return defaultWidgetPosition[widgetName];
+  }
+
+  /** Add the workflow widgets the user has the right for, remove the others. */
+  private applyWorkflowWidgets(authorizedActions: IWorkflowAuth[] = []) {
+    const rights = new Set(authorizedActions.map(({ name }) => name));
+    workflowWidgets.forEach(({ name, workflow, application }) => {
+      const index = this._widgets.findIndex(
+        (w) => w.platformConf.name === name,
+      );
+      if (!rights.has(workflow)) {
+        if (index !== -1) this._widgets.splice(index, 1);
+        return;
+      }
+      if (index === -1) {
+        this._widgets.push(
+          new Widget({
+            id: name,
+            name,
+            application,
+            // ode-ngjs-front renders the widget from its name: no legacy file to load.
+            path: "",
+            js: "",
+            i18n: "",
+            mandatory: false,
+          }),
+        );
+      }
+    });
   }
 
   ////////////////////////////////////// USER PREFERENCES

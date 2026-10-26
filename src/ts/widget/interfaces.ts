@@ -28,7 +28,8 @@ export const WIDGET_NAME = {
   PTIT_OBSERVATOIRE: "ptit-observatoire-widget",
   SCREEN_TIME: "screen-time-widget",
   BIBLIOCOLLEGE: "bibliocollege-widget",
-  E_SIDOC: "e-sidoc-widget"
+  E_SIDOC: "e-sidoc-widget",
+  ALLO_REGION: "allo-region-widget",
 } as const;
 export type WidgetName = (typeof WIDGET_NAME)[keyof typeof WIDGET_NAME];
 
