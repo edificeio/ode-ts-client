@@ -24,7 +24,8 @@ export const WIDGET_NAME = {
   EDUMALIN: "edumalin-widget",
   MEDIACENTRE: "mediacentre-widget",
   CANTINE: "cantine-widget",
-  SCREEN_TIME: "screen-time-widget"
+  SCREEN_TIME: "screen-time-widget",
+  ALLO_REGION: "allo-region-widget"
 } as const;
 export type WidgetName = (typeof WIDGET_NAME)[keyof typeof WIDGET_NAME];
 
